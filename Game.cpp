@@ -1,10 +1,12 @@
 #include "Game.h"
+#include "Actor.h"
+#include "Constants.h"
 
 bool Game::Initialize() {
 	int result = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 	if (result == 0) {
 		window = SDL_CreateWindow(
-			"Space",
+			"Frame",
 			300,
 			175,
 			WINDOW_WIDTH,
@@ -36,6 +38,10 @@ void Game::CreateScene() {
 
 }
 
+void Game::DeleteScene() {
+
+}
+
 void Game::Loop() {
 	while (isRunning) {
 		while (!SDL_TICKS_PASSED(SDL_GetTicks(), ticksCount + FRAME_TIME));
@@ -55,7 +61,27 @@ void Game::Input(float delta) {
 }
 
 void Game::Update(float delta) {
+	updatingActors = true;
+	for (const auto &a : actors) {
+		a->Update(delta);
+	}
+	updatingActors = false;
 
+	// Move any pending actors to mActors
+	for (const auto &pending : pendingActors) {
+		actors.emplace_back(pending);
+	}
+	pendingActors.clear();
+
+	std::vector<Actor*> deadActors;
+	for (const auto &a : actors) {
+		if (a->GetState() == Actor::State::Dead) {
+			deadActors.emplace_back(a);
+		}
+	}
+	for (const auto &a : deadActors) {
+		delete a;
+	}
 }
 
 void Game::Output(float delta) {
@@ -67,7 +93,9 @@ void Game::Output(float delta) {
 		255
 	);
 	SDL_RenderClear(renderer);
+
 	// Draw...
+
 	SDL_RenderPresent(renderer);
 }
 
@@ -75,4 +103,25 @@ void Game::Shutdown() {
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
+}
+
+void Game::AddActor(Actor *actor) {
+	if (updatingActors) {
+		pendingActors.emplace_back(actor);
+	} else {
+		actors.emplace_back(actor);
+	}
+}
+
+void Game::RemoveActor(Actor *actor) {
+	auto it = std::find(pendingActors.begin(), pendingActors.end(), actor);
+	if (it != pendingActors.end()) {
+		std::iter_swap(it, pendingActors.end() - 1);
+		pendingActors.pop_back();
+	}
+	it = std::find(actors.begin(), actors.end(), actor);
+	if (it != actors.end()) {
+		std::iter_swap(it, actors.end() - 1);
+		actors.pop_back();
+	}
 }
