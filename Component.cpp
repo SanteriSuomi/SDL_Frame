@@ -12,7 +12,3 @@ Component::~Component() {
 void Component::Update(float delta) {
 
 }
-
-int Component::GetUpdateOrder() const {
-	return updateOrder;
-}

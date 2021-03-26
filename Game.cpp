@@ -1,6 +1,8 @@
 #include "Game.h"
 #include "Actor.h"
 #include "Constants.h"
+#include "SpriteComponent.h"
+#include "SDL_image.h"
 
 bool Game::Initialize() {
 	int result = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
@@ -24,6 +26,10 @@ bool Game::Initialize() {
 		);
 		if (!renderer) {
 			SDL_Log("Failed to create renderer: %s", SDL_GetError());
+			return false;
+		}
+		if (IMG_Init(IMG_INIT_PNG)) {
+			SDL_Log("Unable to initialize SDL_image: %s", SDL_GetError());
 			return false;
 		}
 		isRunning = true;
@@ -56,7 +62,7 @@ void Game::Loop() {
 	}
 }
 
-void Game::Input(float delta) {
+void Game::Input(float) {
 
 }
 
@@ -84,7 +90,7 @@ void Game::Update(float delta) {
 	}
 }
 
-void Game::Output(float delta) {
+void Game::Output(float) {
 	SDL_SetRenderDrawColor(
 		renderer,
 		105,
@@ -124,4 +130,18 @@ void Game::RemoveActor(Actor *actor) {
 		std::iter_swap(it, actors.end() - 1);
 		actors.pop_back();
 	}
+}
+
+void Game::AddSprite(SpriteComponent *sprite) {
+	for (auto it = sprites.begin(); it != sprites.end(); it++) {
+		if (sprite->GetDrawOrder() < (*it)->GetDrawOrder()) {
+			sprites.insert(it, sprite);
+			break;
+		}
+	}
+}
+
+void Game::RemoveSprite(SpriteComponent *sprite) {
+	auto it = std::find(sprites.begin(), sprites.end(), sprite);
+	sprites.erase(it);
 }

@@ -21,15 +21,42 @@ public:
 	void AddComponent(class Component *component);
 	void RemoveComponent(class Component *component);
 
-	class Game* GetGame();
-	State GetState() const;
-	void SetState(State state);
-	Vector2<float> GetPosition() const;
-	void SetPosition(float x, float y);
-	float GetScale() const;
-	void SetScale(float scale);
-	float GetAngle() const;
-	void SetAngle(float angle);
+	class Game *GetGame() {
+		return game;
+	}
+
+	State GetState() const {
+		return state;
+	}
+
+	void SetState(State s) {
+		state = s;
+	}
+
+	Vector2<float> GetPosition() const {
+		return position;
+	}
+
+	void SetPosition(float x, float y) {
+		position.x = x;
+		position.y = y;
+	}
+
+	float GetScale() const {
+		return scale;
+	}
+
+	void SetScale(float s) {
+		scale = s;
+	}
+
+	float GetAngle() const {
+		return scale;
+	}
+
+	void SetAngle(float a) {
+		angle = a;
+	}
 private:
 	class Game *game = nullptr;
 	std::vector<Component *> components;

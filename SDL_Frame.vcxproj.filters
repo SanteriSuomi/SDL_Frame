@@ -13,6 +13,9 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="SpriteComponent.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -28,6 +31,12 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteComponent.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

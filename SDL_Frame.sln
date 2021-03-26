@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Space", "Space.vcxproj", "{D60E85C8-8349-4441-94E5-9A3A64653CC6}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDL_Frame", "SDL_Frame.vcxproj", "{D60E85C8-8349-4441-94E5-9A3A64653CC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {20688BDB-E994-465E-A20B-E66A2A61E855}
+		SolutionGuid = {CEB66937-B6DD-422B-8BE2-56BE16A8B0AC}
 	EndGlobalSection
 EndGlobal
