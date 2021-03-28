@@ -6,6 +6,11 @@ Actor::Actor(Game *game) : game(game) {
 	game->AddActor(this);
 }
 
+Actor::Actor(Game *game, State state, Vector2<float> position, float scale, float angle) : game(game), state(state), position(position),
+scale(scale), angle(angle) {
+	game->AddActor(this);
+}
+
 Actor::~Actor() {
 	game->RemoveActor(this);
 	while (!components.empty()){

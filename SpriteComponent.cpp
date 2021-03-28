@@ -7,6 +7,11 @@ SpriteComponent::SpriteComponent(Actor *owner, int drawOrder) : Component(owner)
 	owner->GetGame()->AddSprite(this);
 }
 
+SpriteComponent::SpriteComponent(Actor *owner, int drawOrder, SDL_Texture *texture, int width, int height) : Component(owner), texture(texture),
+drawOrder(drawOrder), width(width), height(height) {
+	owner->GetGame()->AddSprite(this);
+}
+
 SpriteComponent::~SpriteComponent() {
 	owner->GetGame()->RemoveSprite(this);
 }

@@ -2,6 +2,8 @@
 
 #include "SDL.h"
 #include <vector>
+#include <string>
+#include <unordered_map>
 
 class Game {
 public:
@@ -23,11 +25,15 @@ private:
 	bool updatingActors = false;
 	std::vector<class Actor *> actors;
 	std::vector<class Actor *> pendingActors;
+
+	std::unordered_map<const char *, SDL_Texture *> textureMap;
 	std::vector<class SpriteComponent *> sprites;
 
-	void Input(float delta);
-	void Update(float delta);
-	void Output(float delta);
+	void Input();
+	void Update();
+	void Output();
 	void CreateScene();
 	void DeleteScene();
+
+	SDL_Texture *LoadTexture(const char *fileName);
 };

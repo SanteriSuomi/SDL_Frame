@@ -6,6 +6,7 @@
 class SpriteComponent : public Component {
 public:
 	SpriteComponent(class Actor *owner, int drawOrder = 100);
+	SpriteComponent(class Actor *owner, int drawOrder, SDL_Texture *texture, int width, int height);
 	~SpriteComponent() override;
 
 	virtual void Draw(SDL_Renderer* renderer);

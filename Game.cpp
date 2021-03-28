@@ -28,11 +28,12 @@ bool Game::Initialize() {
 			SDL_Log("Failed to create renderer: %s", SDL_GetError());
 			return false;
 		}
-		if (IMG_Init(IMG_INIT_PNG)) {
-			SDL_Log("Unable to initialize SDL_image: %s", SDL_GetError());
+		if (IMG_Init(IMG_INIT_PNG) == 0) {
+			SDL_Log("Unable to initialize SDL_image: %s", IMG_GetError());
 			return false;
 		}
 		isRunning = true;
+		ticksCount = SDL_GetTicks();
 		CreateScene();
 		return true;
 	}
@@ -41,7 +42,8 @@ bool Game::Initialize() {
 }
 
 void Game::CreateScene() {
-
+	auto spaceship = new Actor(this, Actor::State::Active, { WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 }, 1, 0);
+	auto sprite = new SpriteComponent(spaceship, 0, LoadTexture("Assets/spaceship.png"), 40, 70);
 }
 
 void Game::DeleteScene() {
@@ -50,35 +52,39 @@ void Game::DeleteScene() {
 
 void Game::Loop() {
 	while (isRunning) {
-		while (!SDL_TICKS_PASSED(SDL_GetTicks(), ticksCount + FRAME_TIME));
-		float delta = (float)(SDL_GetTicks() - ticksCount) / 1000.0F;
-		if (delta > MAX_DELTA_TIME) {
-			delta = MAX_DELTA_TIME;
-		}
-		ticksCount = SDL_GetTicks();
-		Input(delta);
-		Update(delta);
-		Output(delta);
+		Input();
+		Update();
+		Output();
 	}
 }
 
-void Game::Input(float) {
+void Game::Input() {
 
 }
 
-void Game::Update(float delta) {
+void Game::Update() {
+	// Advance frames and calculate tick count
+	while (!SDL_TICKS_PASSED(SDL_GetTicks(), ticksCount + FRAME_TIME));
+	float delta = (float)(SDL_GetTicks() - ticksCount) / 1000.0F;
+	if (delta > MAX_DELTA_TIME) {
+		delta = MAX_DELTA_TIME;
+	}
+	ticksCount = SDL_GetTicks();
+
+	// Update actors
 	updatingActors = true;
 	for (const auto &a : actors) {
 		a->Update(delta);
 	}
 	updatingActors = false;
 
-	// Move any pending actors to mActors
+	// Move any pending actors to actors
 	for (const auto &pending : pendingActors) {
 		actors.emplace_back(pending);
 	}
 	pendingActors.clear();
 
+	// Remove dead actors
 	std::vector<Actor*> deadActors;
 	for (const auto &a : actors) {
 		if (a->GetState() == Actor::State::Dead) {
@@ -90,7 +96,7 @@ void Game::Update(float delta) {
 	}
 }
 
-void Game::Output(float) {
+void Game::Output() {
 	SDL_SetRenderDrawColor(
 		renderer,
 		105,
@@ -99,13 +105,15 @@ void Game::Output(float) {
 		255
 	);
 	SDL_RenderClear(renderer);
-
-	// Draw...
-
+	for (const auto &s : sprites) {
+		s->Draw(renderer);
+	}
 	SDL_RenderPresent(renderer);
 }
 
 void Game::Shutdown() {
+	IMG_Quit();
+	DeleteScene();
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
@@ -136,12 +144,35 @@ void Game::AddSprite(SpriteComponent *sprite) {
 	for (auto it = sprites.begin(); it != sprites.end(); it++) {
 		if (sprite->GetDrawOrder() < (*it)->GetDrawOrder()) {
 			sprites.insert(it, sprite);
-			break;
+			return;
 		}
 	}
+	sprites.emplace_back(sprite);
 }
 
 void Game::RemoveSprite(SpriteComponent *sprite) {
 	auto it = std::find(sprites.begin(), sprites.end(), sprite);
 	sprites.erase(it);
+}
+
+SDL_Texture *Game::LoadTexture(const char *fileName) {
+	SDL_Texture *texture = nullptr;
+	auto it = textureMap.find(fileName);
+	if (it != textureMap.end()) {
+		texture = it->second;
+	} else {
+		auto surface = IMG_Load(fileName);
+		if (!surface) {
+			SDL_Log("Failed to load texture file: %s", fileName);
+			return nullptr;
+		}
+		texture = SDL_CreateTextureFromSurface(renderer, surface);
+		SDL_FreeSurface(surface);
+		if (!texture) {
+			SDL_Log("Failed to convert surface to texture: %s", fileName);
+			return nullptr;
+		}
+		textureMap[fileName] = texture;
+	}
+	return texture;
 }

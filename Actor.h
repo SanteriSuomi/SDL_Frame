@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "Vector2.h"
+#include <initializer_list>
 
 class Actor {
 public:
@@ -12,6 +13,7 @@ public:
 	};
 
 	explicit Actor(class Game *game);
+	explicit Actor(class Game *game, State state, Vector2<float> position, float scale, float angle);
 	virtual ~Actor();
 
 	void Update(float delta);
@@ -51,7 +53,7 @@ public:
 	}
 
 	float GetAngle() const {
-		return scale;
+		return angle;
 	}
 
 	void SetAngle(float a) {
