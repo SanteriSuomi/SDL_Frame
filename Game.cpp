@@ -1,8 +1,10 @@
 #include "Game.h"
 #include "Actor.h"
 #include "Constants.h"
-#include "SpriteComponent.h"
 #include "SDL_image.h"
+
+#include "AnimationSpriteComponent.h"
+#include "BackgroundSpriteComponent.h"
 
 bool Game::Initialize() {
 	int result = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
@@ -43,7 +45,20 @@ bool Game::Initialize() {
 
 void Game::CreateScene() {
 	auto spaceship = new Actor(this, Actor::State::Active, { WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 }, 1, 0);
-	auto sprite = new SpriteComponent(spaceship, 0, LoadTexture("Assets/spaceship.png"), 40, 70);
+	std::vector<SDL_Texture *> spaceshipAnims {
+		LoadTexture("Assets/Ship01.png"),
+		LoadTexture("Assets/Ship02.png"),
+		LoadTexture("Assets/Ship03.png"),
+		LoadTexture("Assets/Ship04.png")
+	};
+	new AnimationSpriteComponent(spaceship, 100, spaceshipAnims, 75, 140);
+
+	auto background = new Actor(this, Actor::State::Active, { WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 }, 1, 0);
+	std::vector<SDL_Texture *> backgroundText {
+		LoadTexture("Assets/Space01.png"),
+		LoadTexture("Assets/Space02.png"),
+	};
+	new BackgroundSpriteComponent(background, 10, { WINDOW_WIDTH, WINDOW_HEIGHT }, { 0, -25 }, backgroundText);
 }
 
 void Game::DeleteScene() {
@@ -59,7 +74,18 @@ void Game::Loop() {
 }
 
 void Game::Input() {
-
+	SDL_Event event;
+	while (SDL_PollEvent(&event)) {
+		switch (event.type) {
+			case SDL_QUIT:
+				isRunning = false;
+				break;
+		}
+	}
+	auto state = SDL_GetKeyboardState(nullptr);
+	if (state[SDL_SCANCODE_ESCAPE]) {
+		isRunning = false;
+	}
 }
 
 void Game::Update() {

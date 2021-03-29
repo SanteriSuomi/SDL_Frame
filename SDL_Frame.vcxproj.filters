@@ -16,6 +16,12 @@
     <ClCompile Include="SpriteComponent.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationSpriteComponent.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundSpriteComponent.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -37,6 +43,12 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Math.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationSpriteComponent.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundSpriteComponent.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

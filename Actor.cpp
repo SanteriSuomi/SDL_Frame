@@ -26,6 +26,7 @@ void Actor::Update(float delta) {
 }
 
 void Actor::UpdateActor(float delta) {
+
 }
 
 void Actor::UpdateComponents(float delta) const {
@@ -38,9 +39,10 @@ void Actor::AddComponent(Component *component) {
 	for (auto it = components.begin(); it != components.end(); it++) {
 		if (component->GetUpdateOrder() < (*it)->GetUpdateOrder()) {
 			components.insert(it, component);
-			break;
+			return;
 		}
 	}
+	components.emplace_back(component);
 }
 
 void Actor::RemoveComponent(Component *component) {

@@ -1,7 +1,7 @@
 #include "SpriteComponent.h"
 #include "Actor.h"
-#include "Math.h"
 #include "Game.h"
+#include "Math.h"
 
 SpriteComponent::SpriteComponent(Actor *owner, int drawOrder) : Component(owner), drawOrder(drawOrder) {
 	owner->GetGame()->AddSprite(this);
@@ -19,14 +19,10 @@ SpriteComponent::~SpriteComponent() {
 void SpriteComponent::Draw(SDL_Renderer *renderer) {
 	if (texture) {
 		SDL_Rect rect;
-		// Scale the width/height by owner's scale
 		rect.w = static_cast<int>((float)width * owner->GetScale());
 		rect.h = static_cast<int>((float)height * owner->GetScale());
-		// Center the rectangle around the position of the owner
 		rect.x = static_cast<int>(owner->GetPosition().x - (float)rect.w / 2);
 		rect.y = static_cast<int>(owner->GetPosition().y - (float)rect.h / 2);
-
-		// Draw (have to convert angle from radians to degrees, and clockwise to counter)
 		SDL_RenderCopyEx(renderer,
 			texture,
 			nullptr,

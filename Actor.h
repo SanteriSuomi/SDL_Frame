@@ -2,7 +2,6 @@
 
 #include <vector>
 #include "Vector2.h"
-#include <initializer_list>
 
 class Actor {
 public:
