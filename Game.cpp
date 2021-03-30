@@ -2,9 +2,7 @@
 #include "Actor.h"
 #include "Constants.h"
 #include "SDL_image.h"
-
-#include "AnimationSpriteComponent.h"
-#include "BackgroundSpriteComponent.h"
+#include "SpriteComponent.h"
 
 bool Game::Initialize() {
 	int result = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
@@ -44,21 +42,7 @@ bool Game::Initialize() {
 }
 
 void Game::CreateScene() {
-	auto spaceship = new Actor(this, Actor::State::Active, { WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 }, 1, 0);
-	std::vector<SDL_Texture *> spaceshipAnims {
-		LoadTexture("Assets/Ship01.png"),
-		LoadTexture("Assets/Ship02.png"),
-		LoadTexture("Assets/Ship03.png"),
-		LoadTexture("Assets/Ship04.png")
-	};
-	new AnimationSpriteComponent(spaceship, 100, spaceshipAnims, 75, 140);
 
-	auto background = new Actor(this, Actor::State::Active, { WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 }, 1, 0);
-	std::vector<SDL_Texture *> backgroundText {
-		LoadTexture("Assets/Space01.png"),
-		LoadTexture("Assets/Space02.png"),
-	};
-	new BackgroundSpriteComponent(background, 10, { WINDOW_WIDTH, WINDOW_HEIGHT }, { 0, 30 }, backgroundText);
 }
 
 void Game::DeleteScene() {

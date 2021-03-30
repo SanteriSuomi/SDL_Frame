@@ -4,6 +4,7 @@
 
 namespace math {
 	const float PI = 3.1415926535F;
+	const float TwoPI = 6.283185307F;
 
 	inline float ToDegrees(float radians) {
 		return radians * 180.0F / PI;
@@ -74,8 +75,7 @@ namespace math {
 		}
 
 		Vector2<T> operator*(const T m) {
-			x *= m;
-			y *= m;
+			return Vector2<T>(x * m, y * m);
 		}
 	};
 
@@ -134,9 +134,7 @@ namespace math {
 		}
 
 		Vector3<T> operator*(const T m) {
-			x *= m;
-			y *= m;
-			z *= m;
+			return Vector3<T>(x * m, y * m, z * m);
 		}
 	};
 }

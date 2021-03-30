@@ -43,6 +43,10 @@ public:
 		position.y = y;
 	}
 
+	void SetPosition(const math::Vector2<float> &pos) {
+		position = pos;
+	}
+
 	float GetScale() const {
 		return scale;
 	}

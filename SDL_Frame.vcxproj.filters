@@ -1,60 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Actor.cpp">
-      <Filter>Source</Filter>
+      <Filter>Actor</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
-      <Filter>Source</Filter>
+      <Filter>Component</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source</Filter>
+      <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="SpriteComponent.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationSpriteComponent.cpp">
-      <Filter>Source</Filter>
+      <Filter>Component\Sub</Filter>
     </ClCompile>
     <ClCompile Include="BackgroundSpriteComponent.cpp">
-      <Filter>Source</Filter>
+      <Filter>Component\Sub</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationSpriteComponent.cpp">
+      <Filter>Component\Sub</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MoveComponent.cpp">
+      <Filter>Component\Sub</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Constants.h">
-      <Filter>Headers</Filter>
+      <Filter>Actor</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
-      <Filter>Headers</Filter>
+      <Filter>Component</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Headers</Filter>
+      <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="SpriteComponent.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Math.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationSpriteComponent.h">
-      <Filter>Headers</Filter>
+      <Filter>Component\Sub</Filter>
     </ClInclude>
     <ClInclude Include="BackgroundSpriteComponent.h">
-      <Filter>Headers</Filter>
+      <Filter>Component\Sub</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationSpriteComponent.h">
+      <Filter>Component\Sub</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>Math/Random</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveComponent.h">
+      <Filter>Component\Sub</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>Math/Random</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Headers">
-      <UniqueIdentifier>{12f74e6d-259c-4537-bf72-cc4af326273b}</UniqueIdentifier>
+    <Filter Include="Actor">
+      <UniqueIdentifier>{b49e0cbf-4a80-4aaa-be16-3aec30a8ea26}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source">
-      <UniqueIdentifier>{c629acb5-a9c2-4982-b98e-5b3517105e0d}</UniqueIdentifier>
+    <Filter Include="Component">
+      <UniqueIdentifier>{3c303ace-3556-4c66-9504-2bd94e7339e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Sub">
+      <UniqueIdentifier>{7245cd7a-5550-44fa-8c70-e31fc9db5e84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{c921a267-ebb8-41bd-92b8-2be7b184eaf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Constants">
+      <UniqueIdentifier>{cfd97a8d-2d56-4d93-ae5d-31a2dc9c3ff8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math/Random">
+      <UniqueIdentifier>{b8670e9c-b1bf-4d4b-8b77-3f2a87e0802b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
