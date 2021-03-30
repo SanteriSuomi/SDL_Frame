@@ -27,7 +27,7 @@ void SpriteComponent::Draw(SDL_Renderer *renderer) {
 			texture,
 			nullptr,
 			&rect,
-			-math::ToDegrees(owner->GetAngle()),
+			-math::ToDegrees(owner->GetRotation()),
 			nullptr,
 			SDL_FLIP_NONE);
 	}

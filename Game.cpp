@@ -58,7 +58,7 @@ void Game::CreateScene() {
 		LoadTexture("Assets/Space01.png"),
 		LoadTexture("Assets/Space02.png"),
 	};
-	new BackgroundSpriteComponent(background, 10, { WINDOW_WIDTH, WINDOW_HEIGHT }, { 0, -25 }, backgroundText);
+	new BackgroundSpriteComponent(background, 10, { WINDOW_WIDTH, WINDOW_HEIGHT }, { 0, 30 }, backgroundText);
 }
 
 void Game::DeleteScene() {

@@ -6,8 +6,8 @@ Actor::Actor(Game *game) : game(game) {
 	game->AddActor(this);
 }
 
-Actor::Actor(Game *game, State state, Vector2<float> position, float scale, float angle) : game(game), state(state), position(position),
-scale(scale), angle(angle) {
+Actor::Actor(Game *game, State state, math::Vector2<float> position, float scale, float angle) : game(game), state(state), position(position),
+scale(scale), rotation(angle) {
 	game->AddActor(this);
 }
 

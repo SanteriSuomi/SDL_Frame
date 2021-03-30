@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "Vector2.h"
+#include "Math.h"
 
 class Actor {
 public:
@@ -12,7 +12,7 @@ public:
 	};
 
 	explicit Actor(class Game *game);
-	explicit Actor(class Game *game, State state, Vector2<float> position, float scale, float angle);
+	explicit Actor(class Game *game, State state, math::Vector2<float> position, float scale, float angle);
 	virtual ~Actor();
 
 	void Update(float delta);
@@ -34,7 +34,7 @@ public:
 		state = s;
 	}
 
-	Vector2<float> GetPosition() const {
+	math::Vector2<float> GetPosition() const {
 		return position;
 	}
 
@@ -51,18 +51,19 @@ public:
 		scale = s;
 	}
 
-	float GetAngle() const {
-		return angle;
+	float GetRotation() const {
+		return rotation;
 	}
 
-	void SetAngle(float a) {
-		angle = a;
+	void SetRotation(float rot) {
+		rotation = rot;
 	}
+
 private:
 	class Game *game = nullptr;
 	std::vector<Component *> components;
 	State state = State::Active;
-	Vector2<float> position = { 0.0F, 0.0F };
+	math::Vector2<float> position = { 0.0F, 0.0F };
 	float scale = 0.0F;
-	float angle = 0.0F;
+	float rotation = 0.0F;
 };

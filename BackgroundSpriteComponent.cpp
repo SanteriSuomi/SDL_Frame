@@ -8,7 +8,7 @@ BackgroundSpriteComponent::BackgroundSpriteComponent(Actor *owner, int drawOrder
 
 }
 
-BackgroundSpriteComponent::BackgroundSpriteComponent(Actor *owner, int drawOrder, Vector2<float> screenSize, Vector2<float> scrollVelocity, 
+BackgroundSpriteComponent::BackgroundSpriteComponent(Actor *owner, int drawOrder, math::Vector2<float> screenSize, math::Vector2<float> scrollVelocity, 
 	const std::vector<SDL_Texture *> &textures) : SpriteComponent(owner, drawOrder), screenSize(screenSize), scrollVelocity(scrollVelocity) {
 	SetBackgroundTextures(textures);
 }
@@ -49,7 +49,7 @@ void BackgroundSpriteComponent::SetBackgroundTextures(const std::vector<SDL_Text
 	for (const auto &t : textures) {
 		BackgroundTexture temp;
 		temp.texture = t;
-		temp.offset = { 0, (float)count * screenSize.y, };
+		temp.offset = { 0, -((float)count * screenSize.y), };
 		backgroundTextures.emplace_back(temp);
 		count++;
 	}
