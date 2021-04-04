@@ -29,6 +29,19 @@ void Actor::UpdateActor(float delta) {
 
 }
 
+void Actor::Input(const uint8_t *keyState) {
+	if (state == State::Active) {
+		for (const auto &c : components) {
+			c->Input(keyState);
+		}
+		ActorInput(keyState);
+	}
+}
+
+void Actor::ActorInput(const uint8_t *keyState) {
+
+}
+
 void Actor::UpdateComponents(float delta) const {
 	for (const auto &c : components) {
 		c->Update(delta);
@@ -49,5 +62,6 @@ void Actor::RemoveComponent(Component *component) {
 	auto it = std::find(components.begin(), components.end(), component);
 	if (it != components.end()) {
 		components.erase(it);
+		delete *it;
 	}
 }

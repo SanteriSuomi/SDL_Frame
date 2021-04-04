@@ -8,22 +8,22 @@ public:
 
 	void Update(float delta) override;
 
-	float GetAngularSpeed() const {
-		return angularSpeed;
-	}
-
 	float GetForwardSpeed() const {
 		return forwardSpeed;
-	}
-
-	void SetAngularSpeed(float speed) {
-		angularSpeed = speed;
 	}
 
 	void SetForwardSpeed(float speed) {
 		forwardSpeed = speed;
 	}
+
+	float GetAngularSpeed() const {
+		return angularSpeed;
+	}
+
+	void SetAngularSpeed(float speed) {
+		angularSpeed = speed;
+	}
 private:
-	float angularSpeed = 0.0F;
 	float forwardSpeed = 0.0F;
+	float angularSpeed = 0.0F;
 };

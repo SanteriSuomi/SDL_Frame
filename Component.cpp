@@ -12,3 +12,7 @@ Component::~Component() {
 void Component::Update(float delta) {
 
 }
+
+void Component::Input(const uint8_t *keyState) {
+
+}

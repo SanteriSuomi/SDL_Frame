@@ -4,6 +4,8 @@
 #include "SDL_image.h"
 #include "SpriteComponent.h"
 
+#include "InputComponent.h"
+
 bool Game::Initialize() {
 	int result = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 	if (result == 0) {
@@ -42,7 +44,10 @@ bool Game::Initialize() {
 }
 
 void Game::CreateScene() {
-
+	Actor *ship = new Actor(this, Actor::State::Active, { WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 }, 1, 0);
+	SpriteComponent *sprComp = new SpriteComponent(ship, 5, LoadTexture("Assets/Ship01.png"), 100, 50);
+	InputComponent *inpComp = new InputComponent(ship, 0, 150, 3);
+	inpComp->SetKeys(SDL_SCANCODE_W, SDL_SCANCODE_S, SDL_SCANCODE_A, SDL_SCANCODE_D);
 }
 
 void Game::DeleteScene() {
@@ -64,12 +69,19 @@ void Game::Input() {
 			case SDL_QUIT:
 				isRunning = false;
 				break;
+			default:
+				break;
 		}
 	}
 	auto state = SDL_GetKeyboardState(nullptr);
 	if (state[SDL_SCANCODE_ESCAPE]) {
 		isRunning = false;
 	}
+	updatingActors = true;
+	for (const auto &a : actors) {
+		a->Input(state);
+	}
+	updatingActors = false;
 }
 
 void Game::Update() {

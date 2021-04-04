@@ -50,7 +50,7 @@ namespace math {
 			y /= length;
 		}
 
-		Vector2<T> RotationToForward(T rotation) {
+		static Vector2<T> RotationToForward(T rotation) {
 			return Vector2<T>(cos(rotation), -sin(rotation));
 		}
 

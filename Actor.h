@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <cstdint>
 #include "Math.h"
 
 class Actor {
@@ -12,12 +13,14 @@ public:
 	};
 
 	explicit Actor(class Game *game);
-	explicit Actor(class Game *game, State state, math::Vector2<float> position, float scale, float angle);
+	explicit Actor(class Game *game, State state, math::Vector2<float> position, float scale, float rotation);
 	virtual ~Actor();
 
 	void Update(float delta);
 	void UpdateComponents(float delta) const;
 	virtual void UpdateActor(float delta);
+	void Input(const uint8_t *keyState);
+	virtual void ActorInput(const uint8_t *keyState);
 
 	void AddComponent(class Component *component);
 	void RemoveComponent(class Component *component);
@@ -62,7 +65,6 @@ public:
 	void SetRotation(float rot) {
 		rotation = rot;
 	}
-
 private:
 	class Game *game = nullptr;
 	std::vector<Component *> components;

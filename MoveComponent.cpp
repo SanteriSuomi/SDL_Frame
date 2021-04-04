@@ -7,12 +7,12 @@ MoveComponent::MoveComponent(Actor *owner, int updateOrder) : Component(owner, u
 }
 
 void MoveComponent::Update(float delta) {
-	if (!math::Compare<float>(angularSpeed, 0)) {
-		float rotation = owner->GetRotation() + angularSpeed * delta;
-		owner->SetRotation(rotation);
-	}
 	if (!math::Compare<float>(forwardSpeed, 0)) {
-		math::Vector2<float> position = owner->GetPosition() * forwardSpeed * delta;
+		auto position = owner->GetPosition() + math::Vector2<float>::RotationToForward(owner->GetRotation()) * (forwardSpeed * delta);
 		owner->SetPosition(position);
+	}
+	if (!math::Compare<float>(angularSpeed, 0)) {
+		float rotation = owner->GetRotation() + (angularSpeed * delta);
+		owner->SetRotation(rotation);
 	}
 }
