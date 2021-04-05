@@ -7,5 +7,7 @@ class CollisionComponent : public Component {
 public:
 	CollisionComponent(class Actor *owner, int updateOrder);
 
-	virtual bool Intersects(const T &first, const T &second);
+	void Update(float delta) override;
+
+	virtual bool Intersects(T &first, T &second);
 };

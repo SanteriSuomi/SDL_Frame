@@ -73,9 +73,6 @@
     <ClInclude Include="CircleComponent.h">
       <Filter>Component\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="Circle.h">
-      <Filter>Component\Collision\Objects</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Actor">
@@ -106,10 +103,7 @@
       <UniqueIdentifier>{d190fcb4-b71b-4be2-afbb-f538b8d62503}</UniqueIdentifier>
     </Filter>
     <Filter Include="Component\Collision">
-      <UniqueIdentifier>{ca5245f4-02d2-4710-aa81-ede91b8f6630}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component\Collision\Objects">
-      <UniqueIdentifier>{b3954b4b-7fa4-4b38-bf99-c7dcb0674c85}</UniqueIdentifier>
+      <UniqueIdentifier>{4623320d-2d88-40c6-95cd-faf869aaa528}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

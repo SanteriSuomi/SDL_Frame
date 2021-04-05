@@ -1,11 +1,13 @@
 #include "CircleComponent.h"
+#include "Actor.h"
 
-template<typename T>
-CircleComponent<T>::CircleComponent(Actor *owner, int updateOrder, const Circle &circle) : CollisionComponent(owner, updateOrder), circle(circle) {
+CircleComponent::CircleComponent(Actor *owner, int updateOrder, float radius) : CollisionComponent(owner, updateOrder), radius(radius) {
 
 }
 
-template<typename T>
-bool CircleComponent<T>::Intersects(const Circle &first, const Circle &second) {
-	return false;
+bool CircleComponent::Intersects(CircleComponent &first, CircleComponent &second) {
+	auto distanceSquared = (first.GetOwner()->GetPosition() - second.GetOwner()->GetPosition()).LengthSquared();
+	float radiiSquared = first.GetRadius() + second.GetRadius();
+	radiiSquared *= radiiSquared;
+	return distanceSquared <= radiiSquared;
 }

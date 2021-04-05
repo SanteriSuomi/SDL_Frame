@@ -14,8 +14,8 @@ public:
 	void AddActor(class Actor *actor);
 	void RemoveActor(class Actor *actor);
 
-	void AddSprite(class SpriteComponent* sprite);
-	void RemoveSprite(class SpriteComponent* sprite);
+	void AddSprite(class SpriteComponent *sprite);
+	void RemoveSprite(class SpriteComponent *sprite);
 private:
 	SDL_Window *window = nullptr;
 	SDL_Renderer *renderer = nullptr;

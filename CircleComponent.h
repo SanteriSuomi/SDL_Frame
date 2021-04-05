@@ -1,14 +1,16 @@
 #pragma once
 
 #include "CollisionComponent.h"
-#include "Circle.h"
 
-template<typename T>
-class CircleComponent : public CollisionComponent<Circle> {
+class CircleComponent : public CollisionComponent<CircleComponent> {
 public:
-	CircleComponent(class Actor *owner, int updateOrder, const Circle &circle);
+	CircleComponent(class Actor *owner, int updateOrder, float radius);
 
-	bool Intersects(const Circle &first, const Circle &second) override;
+	bool Intersects(CircleComponent &first, CircleComponent &second) override;
+
+	float GetRadius() const {
+		return radius;
+	}
 private:
-	Circle circle;
+	float radius;
 };

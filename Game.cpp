@@ -5,6 +5,7 @@
 #include "SpriteComponent.h"
 
 #include "InputComponent.h"
+#include "CircleComponent.h"
 
 bool Game::Initialize() {
 	int result = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
@@ -44,9 +45,10 @@ bool Game::Initialize() {
 }
 
 void Game::CreateScene() {
-	auto *ship = new Actor(this, Actor::State::Active, { WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 }, 1, 0);
-	auto *sprComp = new SpriteComponent(ship, 5, LoadTexture("Assets/Ship01.png"), 100, 50);
-	auto *inpComp = new InputComponent(ship, 0, 150, 3);
+	auto ship = new Actor(this, Actor::State::Active, { WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 }, 1, 0);
+	auto sprComp = new SpriteComponent(ship, 5, LoadTexture("Assets/Ship01.png"), 100, 50);
+	auto inpComp = new InputComponent(ship, 0, 150, 3);
+	auto circComp = new CircleComponent(ship, 10, 1);
 	inpComp->SetKeys(SDL_SCANCODE_W, SDL_SCANCODE_S, SDL_SCANCODE_A, SDL_SCANCODE_D);
 }
 

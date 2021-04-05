@@ -161,7 +161,6 @@
     <ClInclude Include="Actor.h" />
     <ClInclude Include="AnimationSpriteComponent.h" />
     <ClInclude Include="BackgroundSpriteComponent.h" />
-    <ClInclude Include="Circle.h" />
     <ClInclude Include="CircleComponent.h" />
     <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="Component.h" />

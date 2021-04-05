@@ -9,6 +9,10 @@ public:
 	virtual void Update(float delta);
 	virtual void Input(const uint8_t *state);
 
+	Actor *GetOwner() {
+		return owner;
+	}
+
 	int GetUpdateOrder() const {
 		return updateOrder;
 	}
