@@ -44,9 +44,9 @@ bool Game::Initialize() {
 }
 
 void Game::CreateScene() {
-	Actor *ship = new Actor(this, Actor::State::Active, { WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 }, 1, 0);
-	SpriteComponent *sprComp = new SpriteComponent(ship, 5, LoadTexture("Assets/Ship01.png"), 100, 50);
-	InputComponent *inpComp = new InputComponent(ship, 0, 150, 3);
+	auto *ship = new Actor(this, Actor::State::Active, { WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 }, 1, 0);
+	auto *sprComp = new SpriteComponent(ship, 5, LoadTexture("Assets/Ship01.png"), 100, 50);
+	auto *inpComp = new InputComponent(ship, 0, 150, 3);
 	inpComp->SetKeys(SDL_SCANCODE_W, SDL_SCANCODE_S, SDL_SCANCODE_A, SDL_SCANCODE_D);
 }
 

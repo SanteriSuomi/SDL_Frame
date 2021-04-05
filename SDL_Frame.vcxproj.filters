@@ -10,21 +10,27 @@
     <ClCompile Include="Game.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="SpriteComponent.cpp">
-      <Filter>Component\Sub</Filter>
+      <Filter>Component\Sprite</Filter>
     </ClCompile>
     <ClCompile Include="BackgroundSpriteComponent.cpp">
-      <Filter>Component\Sub</Filter>
+      <Filter>Component\Sprite</Filter>
     </ClCompile>
     <ClCompile Include="AnimationSpriteComponent.cpp">
-      <Filter>Component\Sub</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MoveComponent.cpp">
-      <Filter>Component\Sub</Filter>
+      <Filter>Component\Animation</Filter>
     </ClCompile>
     <ClCompile Include="InputComponent.cpp">
-      <Filter>Component\Sub</Filter>
+      <Filter>Component\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveComponent.cpp">
+      <Filter>Component\Move</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionComponent.cpp">
+      <Filter>Component\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleComponent.cpp">
+      <Filter>Component\Collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -37,29 +43,38 @@
     <ClInclude Include="Game.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteComponent.h">
-      <Filter>Component\Sub</Filter>
-    </ClInclude>
-    <ClInclude Include="BackgroundSpriteComponent.h">
-      <Filter>Component\Sub</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationSpriteComponent.h">
-      <Filter>Component\Sub</Filter>
-    </ClInclude>
     <ClInclude Include="Math.h">
       <Filter>Math/Random</Filter>
     </ClInclude>
     <ClInclude Include="Constants.h">
       <Filter>Constants</Filter>
     </ClInclude>
-    <ClInclude Include="MoveComponent.h">
-      <Filter>Component\Sub</Filter>
-    </ClInclude>
     <ClInclude Include="Random.h">
       <Filter>Math/Random</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteComponent.h">
+      <Filter>Component\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundSpriteComponent.h">
+      <Filter>Component\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationSpriteComponent.h">
+      <Filter>Component\Animation</Filter>
+    </ClInclude>
     <ClInclude Include="InputComponent.h">
-      <Filter>Component\Sub</Filter>
+      <Filter>Component\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveComponent.h">
+      <Filter>Component\Move</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent.h">
+      <Filter>Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleComponent.h">
+      <Filter>Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle.h">
+      <Filter>Component\Collision\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -69,9 +84,6 @@
     <Filter Include="Component">
       <UniqueIdentifier>{3c303ace-3556-4c66-9504-2bd94e7339e4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Component\Sub">
-      <UniqueIdentifier>{7245cd7a-5550-44fa-8c70-e31fc9db5e84}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{c921a267-ebb8-41bd-92b8-2be7b184eaf8}</UniqueIdentifier>
     </Filter>
@@ -80,6 +92,24 @@
     </Filter>
     <Filter Include="Math/Random">
       <UniqueIdentifier>{b8670e9c-b1bf-4d4b-8b77-3f2a87e0802b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Sprite">
+      <UniqueIdentifier>{575f5ba0-7506-4930-8e97-6f46069b3637}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Animation">
+      <UniqueIdentifier>{3db7e100-9b13-4828-9cd5-e5c9a2fe0e9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Input">
+      <UniqueIdentifier>{79ba34e9-8028-4034-9963-791c7ede8e99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Move">
+      <UniqueIdentifier>{d190fcb4-b71b-4be2-afbb-f538b8d62503}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Collision">
+      <UniqueIdentifier>{ca5245f4-02d2-4710-aa81-ede91b8f6630}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Collision\Objects">
+      <UniqueIdentifier>{b3954b4b-7fa4-4b38-bf99-c7dcb0674c85}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
