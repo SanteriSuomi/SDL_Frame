@@ -45,11 +45,15 @@ bool Game::Initialize() {
 }
 
 void Game::CreateScene() {
-	auto ship = new Actor(this, Actor::State::Active, { WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 }, 1, 0);
-	auto sprComp = new SpriteComponent(ship, 5, LoadTexture("Assets/Ship01.png"), 100, 50);
-	auto inpComp = new InputComponent(ship, 0, 150, 3);
-	auto circComp = new CircleComponent(ship, 10, 1);
+	auto ship01 = new Actor(this, Actor::State::Active, { WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 }, 1, 0);
+	new SpriteComponent(ship01, 5, LoadTexture("Assets/Ship01.png"), 100, 50);
+	auto inpComp = new InputComponent(ship01, 0, 150, 3);
 	inpComp->SetKeys(SDL_SCANCODE_W, SDL_SCANCODE_S, SDL_SCANCODE_A, SDL_SCANCODE_D);
+	new CircleComponent(ship01, 10, 35);
+
+	auto ship02 = new Actor(this, Actor::State::Active, { WINDOW_WIDTH / 2, WINDOW_HEIGHT / 4 }, 1, 0);
+	new SpriteComponent(ship02, 5, LoadTexture("Assets/Ship01.png"), 100, 50);
+	new CircleComponent(ship02, 10, 35);
 }
 
 void Game::DeleteScene() {
@@ -177,6 +181,27 @@ void Game::AddSprite(SpriteComponent *sprite) {
 void Game::RemoveSprite(SpriteComponent *sprite) {
 	auto it = std::find(sprites.begin(), sprites.end(), sprite);
 	sprites.erase(it);
+}
+
+void Game::AddCollision(CollisionComponent *collision) {
+	if (updatingCollisions) {
+		pendingCollisions.emplace_back(collision);
+	} else {
+		collisions.emplace_back(collision);
+	}
+}
+
+void Game::RemoveCollision(CollisionComponent *collision) {
+	auto it = std::find(pendingCollisions.begin(), pendingCollisions.end(), collision);
+	if (it != pendingCollisions.end()) {
+		std::iter_swap(it, pendingCollisions.end() - 1);
+		pendingCollisions.pop_back();
+	}
+	it = std::find(collisions.begin(), collisions.end(), collision);
+	if (it != collisions.end()) {
+		std::iter_swap(it, collisions.end() - 1);
+		collisions.pop_back();
+	}
 }
 
 SDL_Texture *Game::LoadTexture(const char *fileName) {

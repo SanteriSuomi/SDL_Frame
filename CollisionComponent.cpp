@@ -1,16 +1,23 @@
 #include "CollisionComponent.h"
-#include "CircleComponent.h"
+#include "Actor.h"
+#include "Game.h"
 
-CollisionComponent<CircleComponent>::CollisionComponent(Actor *owner, int updateOrder) : Component(owner, updateOrder) {
-
+CollisionComponent::CollisionComponent(class Actor *owner, int updateOrder) : Component(owner, updateOrder) {
+	owner->GetGame()->AddCollision(this);
 }
 
-template<typename T>
-void CollisionComponent<T>::Update(float delta) {
-
+void CollisionComponent::Update(float delta) {
+	for (const auto &c : *GetOwner()->GetGame()->GetCollisions()) {
+		if (this != c 
+			&& c->GetOwner()->GetState() != Actor::State::Dead 
+			&& c->GetOwner()->GetState() != Actor::State::Paused
+			&& Intersects(this, c)) {
+			GetOwner()->SetState(Actor::State::Dead);
+			SDL_Log("Intersection! (at: %d ticks)", SDL_GetTicks());
+		}
+	}
 }
 
-template<typename T>
-bool CollisionComponent<T>::Intersects(T &first, T &second) {
+bool CollisionComponent::Intersects(CollisionComponent *first, CollisionComponent *second) {
 	return false;
 }

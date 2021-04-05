@@ -2,11 +2,11 @@
 
 #include "CollisionComponent.h"
 
-class CircleComponent : public CollisionComponent<CircleComponent> {
+class CircleComponent : public CollisionComponent {
 public:
 	CircleComponent(class Actor *owner, int updateOrder, float radius);
 
-	bool Intersects(CircleComponent &first, CircleComponent &second) override;
+	bool Intersects(CollisionComponent *first, CollisionComponent *second) override;
 
 	float GetRadius() const {
 		return radius;

@@ -16,6 +16,13 @@ public:
 
 	void AddSprite(class SpriteComponent *sprite);
 	void RemoveSprite(class SpriteComponent *sprite);
+
+	void AddCollision(class CollisionComponent *collision);
+	void RemoveCollision(class CollisionComponent *collision);
+
+	std::vector<class CollisionComponent *> *GetCollisions() {
+		return &collisions;
+	}
 private:
 	SDL_Window *window = nullptr;
 	SDL_Renderer *renderer = nullptr;
@@ -28,6 +35,10 @@ private:
 
 	std::unordered_map<const char *, SDL_Texture *> textureMap;
 	std::vector<class SpriteComponent *> sprites;
+
+	bool updatingCollisions = false;
+	std::vector<class CollisionComponent *> collisions;
+	std::vector<class CollisionComponent *> pendingCollisions;
 
 	void Input();
 	void Update();
