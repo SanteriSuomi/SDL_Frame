@@ -7,7 +7,7 @@ CircleComponent::CircleComponent(Actor *owner, int updateOrder, float radius) : 
 
 }
 
-bool CircleComponent::Intersects(CollisionComponent *first, CollisionComponent *second) {
+bool CircleComponent::Intersect(CollisionComponent *first, CollisionComponent *second) {
 	float distanceSquared = (first->GetOwner()->GetPosition() - second->GetOwner()->GetPosition()).LengthSquared();
 	float radiiSquared = dynamic_cast<CircleComponent*>(first)->GetRadius() + dynamic_cast<CircleComponent*>(second)->GetRadius();
 	radiiSquared *= radiiSquared;

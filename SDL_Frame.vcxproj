@@ -155,6 +155,8 @@
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
+    <ClCompile Include="PhysicsInputComponent.cpp" />
+    <ClCompile Include="PhysicsMoveComponent.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +171,8 @@
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="MoveComponent.h" />
+    <ClInclude Include="PhysicsInputComponent.h" />
+    <ClInclude Include="PhysicsMoveComponent.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="SpriteComponent.h" />
   </ItemGroup>

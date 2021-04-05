@@ -6,6 +6,7 @@
 
 #include "InputComponent.h"
 #include "CircleComponent.h"
+#include "PhysicsInputComponent.h"
 
 bool Game::Initialize() {
 	int result = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
@@ -47,7 +48,7 @@ bool Game::Initialize() {
 void Game::CreateScene() {
 	auto ship01 = new Actor(this, Actor::State::Active, { WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 }, 1, 0);
 	new SpriteComponent(ship01, 5, LoadTexture("Assets/Ship01.png"), 100, 50);
-	auto inpComp = new InputComponent(ship01, 0, 150, 3);
+	auto inpComp = new PhysicsInputComponent(ship01, 0, 150, 3, 1);
 	inpComp->SetKeys(SDL_SCANCODE_W, SDL_SCANCODE_S, SDL_SCANCODE_A, SDL_SCANCODE_D);
 	new CircleComponent(ship01, 10, 35);
 
@@ -107,13 +108,13 @@ void Game::Update() {
 	updatingActors = false;
 
 	// Move any pending actors to actors
-	for (const auto &pending : pendingActors) {
-		actors.emplace_back(pending);
+	for (const auto &p : pendingActors) {
+		actors.emplace_back(p);
 	}
 	pendingActors.clear();
 
 	// Remove dead actors
-	std::vector<Actor*> deadActors;
+	std::vector<Actor *> deadActors;
 	for (const auto &a : actors) {
 		if (a->GetState() == Actor::State::Dead) {
 			deadActors.emplace_back(a);

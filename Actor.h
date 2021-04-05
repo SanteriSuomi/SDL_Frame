@@ -65,6 +65,10 @@ public:
 	void SetRotation(float rot) {
 		rotation = rot;
 	}
+
+	bool IsActive() const {
+		return state != Actor::State::Dead && state != Actor::State::Paused;
+	}
 private:
 	class Game *game = nullptr;
 	std::vector<Component *> components;

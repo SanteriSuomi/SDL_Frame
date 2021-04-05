@@ -32,6 +32,12 @@
     <ClCompile Include="CircleComponent.cpp">
       <Filter>Component\Collision</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicsMoveComponent.cpp">
+      <Filter>Component\Move</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsInputComponent.cpp">
+      <Filter>Component\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h">
@@ -72,6 +78,12 @@
     </ClInclude>
     <ClInclude Include="CircleComponent.h">
       <Filter>Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsMoveComponent.h">
+      <Filter>Component\Move</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsInputComponent.h">
+      <Filter>Component\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

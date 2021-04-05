@@ -28,6 +28,10 @@ namespace math {
 		Vector2() = default;
 		Vector2(T x, T y) : x(x), y(y) { }
 
+		bool Empty() {
+			return math::Compare<T>(x, 0) && math::Compare<T>(y, 0);
+		}
+
 		static T Distance(Vector2<T> &v1, Vector2<T> &v2) {
 			Vector2<T> v3 = v1 - v2;
 			return v3.Length();
@@ -74,8 +78,32 @@ namespace math {
 			return Vector2<T>(x + v.x, y + v.y);
 		}
 
+		void operator+=(const Vector2<T> &v) {
+			x += v.x;
+			y += v.y;
+		}
+
+		void operator/=(const Vector2<T> &v) {
+			x /= v.x;
+			y /= v.y;
+		}
+
+		void operator/=(const T m) {
+			x /= m;
+			y /= m;
+		}
+
+		void operator/(const T m) {
+			return Vector2<T>(x / m, y / m);
+		}
+
 		Vector2<T> operator*(const T m) {
 			return Vector2<T>(x * m, y * m);
+		}
+
+		void operator*=(const T m) {
+			x *= m;
+			y *= m;
 		}
 	};
 
@@ -133,8 +161,28 @@ namespace math {
 			return Vector3<T>(x + v.x, y + v.y, z + v.z);
 		}
 
+		void operator+=(const Vector3<T> &v) {
+			x += v.x;
+			y += v.y;
+		}
+
+		void operator/=(const Vector3<T> &v) {
+			x /= v.x;
+			y /= v.y;
+		}
+
+		void operator/=(const T m) {
+			x /= m;
+			y /= m;
+		}
+
 		Vector3<T> operator*(const T m) {
 			return Vector3<T>(x * m, y * m, z * m);
+		}
+
+		void operator*=(const T m) {
+			x *= m;
+			y *= m;
 		}
 	};
 }
